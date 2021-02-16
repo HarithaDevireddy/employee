@@ -1,5 +1,7 @@
 package com.cg.emtoolapi.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,9 @@ public class EmployeeService {
 		return employee;
 	}
 	
-
+    public List<Employee> findBySalaryDetails(double lower,double higher){
+    	List<Employee> emps=employeeRepository.findBySalaryDetails(lower, higher);
+		return emps;
+    	
+    }
 }

@@ -1,5 +1,7 @@
 package com.cg.emtoolapi.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +28,14 @@ public class EmployeeController {
 		
 	}
 	@GetMapping("/{empName}")
-	public ResponseEntity<?> getProjectById(@PathVariable String empName){
+	public ResponseEntity<?> getEmployeeById(@PathVariable String empName){
 		Employee emp = employeeService.findProjectByempName(empName);
 		return new ResponseEntity<Employee>(emp, HttpStatus.OK);
 	}
+	@GetMapping("/{lower}/{higher}")
+	public ResponseEntity<?> getEmployeeBySalaryDetails(@PathVariable double lower,@PathVariable double higher){
+		List<Employee> emps = employeeService.findBySalaryDetails(lower,higher);
+		return new ResponseEntity<List<Employee>>(emps, HttpStatus.OK);
+	
+}
 }
